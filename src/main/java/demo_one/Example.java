@@ -42,24 +42,28 @@ class ExampleMoudle extends AbstractModule{
 	@Override
 	protected void configure() {
 		// TODO Auto-generated method stub
+
 		bind(RacingBike.class).annotatedWith(ApacheRR.class).to(ApacheRR310.class);
 		bind(RacingBike.class).annotatedWith(ApacheRS.class).to(ApacheRR200.class);
-		bind(RacingBike.class).annotatedWith(Names.named("ApacheRT")).to(ApacheRR160.class);
+//		bind(RacingBike.class).annotatedWith(Names.named("ApacheRT")).to(ApacheRR160.class);
+//		
+//		bind(String.class).annotatedWith(Names.named("Prajjwal Singh")).toInstance("This is Prajjwal Singh Welcoming you here");
 		
-		bind(String.class).annotatedWith(Names.named("Prajjwal Singh")).toInstance("This is Prajjwal Singh Welcoming you here");
+		//provider class binding
+//		bind(RacingBike.class).toProvider(ProviderBikes.class);
 		
 //		bind(ApacheRR310.class).to(ApacheRR200.class);
 		
 	}
-	
-	//provides method @Provides
-	@Provides
-	RacingBike provideApache310() {
-		ApacheRR310 apacheRR310 = new ApacheRR310();
-		apacheRR310.setString("This belongs to Prajjwal Singh");
-		System.out.println(apacheRR310.getString());
-		return apacheRR310;
-	}
+//	
+//	//provides method @Provides
+//	@Provides
+//	RacingBike provideApache310() {
+//		ApacheRR310 apacheRR310 = new ApacheRR310();
+//		apacheRR310.setString("This belongs to Prajjwal Singh");
+//		System.out.println(apacheRR310.getString());
+//		return apacheRR310;
+//	}
 	
 }
 
@@ -67,10 +71,10 @@ class ApacheBike {
 	private RacingBike racingBike;
 	
 	@Inject
-	public ApacheBike(RacingBike racingBike) { //calls @Provides method injector  needs its object instance 
+//	public ApacheBike(RacingBike racingBike) { //calls @Provides method injector  needs its object instance 
 //	public ApacheBike(@Named("ApacheRT") RacingBike racingBike, @Named("Prajjwal Singh") String pj) { //this is instanceBinding
 //	public ApacheBike(@Named("ApacheRT") RacingBike racingBike) { //this is bindingAnnotation using @Named
-//	public ApacheBike(@ApacheRS RacingBike racingBike) { //this is bindingAnnotation using @BindingAnnotation
+	public ApacheBike(@ApacheRS RacingBike racingBike) { //this is bindingAnnotation using @BindingAnnotation
 		this.racingBike = racingBike;
 //		System.out.println(pj);
 	}
@@ -83,7 +87,9 @@ class ApacheBike {
 
 //provider class implementation
 class ProviderBikes implements Provider<RacingBike>{
-
+	
+//	RacingBike rb = new ApacheRR310();
+	
 	@Inject
 	public ProviderBikes() {    //has dependencies of its own that's why constructot
 										//with @Inject annotation
@@ -96,7 +102,7 @@ class ProviderBikes implements Provider<RacingBike>{
 	public RacingBike get() {
 		// TODO Auto-generated method stub
 		System.out.println("Inside get method of provider class!!!");
-		return null;
+		return new ApacheRR310();
 	}
 	
 }

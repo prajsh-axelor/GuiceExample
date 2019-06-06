@@ -31,4 +31,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.google.inject/guice
 	compile group: 'com.google.inject', name: 'guice', version: '4.0'
 	
+	// https://mvnrepository.com/artifact/com.google.inject.extensions/guice-persist
+	compile group: 'com.google.inject.extensions', name: 'guice-persist', version: '3.0-rc2'
+	
+	
 }
